@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Profile</title>
+</head>
+<body>
+    <style>
+        .logout {
+            color: #ff4d4d; 
+            text-decoration: none; 
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            opacity: 0.85;
+        }
+    </style>
+    <div class="container" style="text-align: center;">
+        <nav>
+            <a href="/dashboard">แดชบอร์ด</a>
+            <a href="/food_log">บันทึกสารอาหาร</a>
+            <a href="/workout">ตารางออกกำลังกาย</a>
+            <a href="/profile">โปรไฟล์</a>
+        </nav>
+
+        <div class="container">
+    <nav>
+        <a href="/dashboard">แดชบอร์ด</a>
+        <a href="/food_log">บันทึกสารอาหาร</a>
+        <a href="/workout">ตารางออกกำลังกาย</a>
+        <a href="/profile">โปรไฟล์</a>
+    </nav>
+
+    {% if user %}
+    <img class="profile-img" src="{% if user.picture and user.picture.startswith('http') %}{{ user.picture }}{% else %}{{ url_for('static', filename='img/users_profile/default_profile.png') }}{% endif %}">
+
+    <div class="card" style="position: relative;">
+        <a href="/edit_profile" class="edit-dot">⋮</a>
+        <h2 class="form-title">ข้อมูลส่วนตัว</h2>
+        
+        <div class="profile-info">
+            <p><b>ชื่อ :</b> {{ user.name or user.username }}</p>
+            <p><b>เพศ :</b> {{ user.gender }}</p>
+            <p><b>อายุ :</b> {{ user.age }} ปี</p>
+            <p><b>น้ำหนัก :</b> {{ user.weight }} kg</p>
+            <p><b>ส่วนสูง :</b> {{ user.height }} cm</p>
+            <p><b>กิจกรรม :</b> {{ user.activity }}</p>
+            <p><b>ไขมัน :</b> {{ user.bodyfat }} %</p>
+        </div>
+
+        <div style="margin-top: 25px; border-top: 1px solid #FCE4EC; padding-top: 15px;">
+            <a href="/logout" class="logout">ออกจากระบบ</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

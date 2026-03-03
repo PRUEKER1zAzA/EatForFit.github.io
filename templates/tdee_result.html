@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | TDEE Result</title>
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
+            <h1 style="color: #FF6BA9; font-size: 28px;">ผลการวิเคราะห์ร่างกาย</h1>
+            <p style="color: #888;">ข้อมูลนี้จะช่วยให้คุณวางแผนการกินได้แม่นยำขึ้น</p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h3 style="margin-bottom: 15px; color: #555;">สรุปค่าพลังงานของคุณ</h3>
+            
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 25px;">
+                <div style="background: #FFF5F8; padding: 10px 20px; border-radius: 15px;">
+                    <small style="color: #FF6BA9;">BMR</small>
+                    <h2 style="margin: 0; color: #2D2D2D;">{{ bmr }} <span style="font-size: 14px;">kcal</span></h2>
+                </div>
+                <div style="background: #FF6BA9; padding: 10px 20px; border-radius: 15px; color: white;">
+                    <small>TDEE</small>
+                    <h2 style="margin: 0;">{{ tdee }} <span style="font-size: 14px;">kcal</span></h2>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; background: #fdfdfd; padding: 15px; border-radius: 15px; font-size: 14px; border: 1px dashed #eee;">
+                <p><b>เพศ:</b> {{ gender }}</p>
+                <p><b>อายุ:</b> {{ age }} ปี</p>
+                <p><b>น้ำหนัก:</b> {{ weight }} kg</p>
+                <p><b>ส่วนสูง:</b> {{ height }} cm</p>
+                <p style="grid-column: span 2;"><b>ระดับกิจกรรม:</b> {{ activity }}</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 10px;">
+            <div class="tabs">
+                <button class="tab-link active" onclick="openTab(event, 'Maintenance')">คงที่</button>
+                <button class="tab-link" onclick="openTab(event, 'Bulking')">เพิ่มกล้าม</button>
+                <button class="tab-link" onclick="openTab(event, 'Cutting')">ลดไขมัน</button>
+            </div>
+        </div>
+
+        <div id="Maintenance" class="tab-content" style="display: block; margin-top: 25px;">
+            <h3 style="text-align: center; color: #FF6BA9;">เป้าหมาย: รักษาน้ำหนัก ({{ tdee }} kcal)</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div class="in-result-card">
+                    <h4 style="color: #FF6BA9; margin-bottom: 15px;">High Carb(แนะนำ)</h4>
+                    <p>คาร์บ: <b>{{ main_carb }} g</b></p>
+                    <p>โปรตีน: <b>{{ main_protein }} g</b></p>
+                    <p>ไขมัน: <b>{{ main_fat }} g</b></p>
+                </div>
+                <div class="in-result-card">
+                    <h4 style="color: #FF6BA9; margin-bottom: 15px;">Low Carb</h4>
+                    <p>คาร์บ: <b>{{ hfmain_carb }} g</b></p>
+                    <p>โปรตีน: <b>{{ hfmain_protein }} g</b></p>
+                    <p>ไขมัน: <b>{{ hfmain_fat }} g</b></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="Bulking" class="tab-content" style="display: none; margin-top: 25px;">
+             <h3 style="text-align: center; color: #FF6BA9;">เป้าหมาย: เพิ่มกล้ามเนื้อ ({{ bulking }} kcal)</h3>
+             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div class="in-result-card">
+                    <h4 style="color: #FF6BA9; margin-bottom: 15px;">High Carb(แนะนำ)</h4>
+                    <p>คาร์บ: <b>{{ bulk_carb }} g</b></p>
+                    <p>โปรตีน: <b>{{ bulk_protein }} g</b></p>
+                    <p>ไขมัน: <b>{{ bulk_fat }} g</b></p>
+                </div>
+                <div class="in-result-card">
+                    <h4 style="color: #FF6BA9; margin-bottom: 15px;">Low Carb</h4>
+                    <p>คาร์บ: <b>{{ hfbulk_carb }} g</b></p>
+                    <p>โปรตีน: <b>{{ hfbulk_protein }} g</b></p>
+                    <p>ไขมัน: <b>{{ hfbulk_fat }} g</b></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="Cutting" class="tab-content" style="display: none; margin-top: 25px;">
+             <h3 style="text-align: center; color: #FF6BA9;">เป้าหมาย: ลดไขมัน ({{ cutting }} kcal)</h3>
+             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div class="in-result-card">
+                    <h4 style="color: #FF6BA9; margin-bottom: 15px;">High Carb(แนะนำ)</h4>
+                    <p>คาร์บ: <b>{{ cut_carb }} g</b></p>
+                    <p>โปรตีน: <b>{{ cut_protein }} g</b></p>
+                    <p>ไขมัน: <b>{{ cut_fat }} g</b></p>
+                </div>
+                <div class="in-result-card">
+                    <h4 style="color: #FF6BA9; margin-bottom: 15px;">Low Carb</h4>
+                    <p>คาร์บ: <b>{{ hfcut_carb }} g</b></p>
+                    <p>โปรตีน: <b>{{ hfcut_protein }} g</b></p>
+                    <p>ไขมัน: <b>{{ hfcut_fat }} g</b></p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; margin-bottom: 50px;">
+            <a href="/home" class="btsubmit" style="text-decoration: none; padding: 12px 40px;">กลับไปหน้าแรก</a>
+            <br>
+            <a href="/calculator" style="display: inline-block; margin-top: 15px; color: #888; text-decoration: none; font-size: 14px;">← คำนวณใหม่</a>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>     

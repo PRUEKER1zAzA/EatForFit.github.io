@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Admin - Edit User</title>
+</head>
+
+<body>
+    <div class="container">
+        <div style="margin-top: 30px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+            <a href="/admin" style="text-decoration: none; color: #FF6BA9; font-size: 14px;">← กลับไปหน้าจัดการ</a>
+        </div>
+
+        <div class="card" style="margin-top: 15px;">
+            <h2 class="form-title" style="margin-bottom: 20px;">แก้ไขข้อมูลผู้ใช้ ({{ user_type | capitalize }})</h2>
+
+            <form method="POST">
+
+                {% if user_type == "guest" %}
+                <div class="form-group">
+                    <label>ชื่อผู้ใช้ (Username)</label>
+                    <input class="tb" name="username" value="{{ user['username'] }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>อายุ (ปี)</label>
+                    <input class="tb" type="number" name="age" value="{{ user['age'] }}">
+                </div>
+                {% elif user_type == "google" %}
+                <div class="form-group">
+                    <label>ชื่อ (Name)</label>
+                    <input class="tb" name="name" value="{{ user['name'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label>อีเมล (Email)</label>
+                    <input class="tb" value="{{ user['email'] }}" readonly style="background: #f9f9f9; color: #888;">
+                </div>
+                {% endif %}
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>เพศ</label>
+                        <select class="tb" name="gender">
+                            <option value="male" {% if user['gender'] == 'male' %}selected{% endif %}>ชาย</option>
+                            <option value="female" {% if user['gender'] == 'female' %}selected{% endif %}>หญิง</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>% ไขมัน (Body Fat)</label>
+                        <input class="tb" type="number" step="0.1" name="bodyfat" value="{{ user['bodyfat'] }}">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>น้ำหนัก (kg)</label>
+                        <input class="tb" type="number" step="0.1" name="weight" value="{{ user['weight'] }}">
+                    </div>
+                    <div class="form-group">
+                        <label>ส่วนสูง (cm)</label>
+                        <input class="tb" type="number" step="0.1" name="height" value="{{ user['height'] }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>ระดับกิจกรรม</label>
+                    <select class="tb" name="activity">
+                        <option value="sedentary" {% if user['activity']=="sedentary" %}selected{% endif %}>ไม่ออกกำลังกายเลย</option>
+                        <option value="light" {% if user['activity']=="light" %}selected{% endif %}>เบา 1-2 วัน/สัปดาห์</option>
+                        <option value="moderate" {% if user['activity']=="moderate" %}selected{% endif %}>ปานกลาง 3-5 วัน/สัปดาห์</option>
+                        <option value="heavy" {% if user['activity']=="heavy" %}selected{% endif %}>หนัก 6-7 วัน/สัปดาห์</option>
+                        <option value="athlete" {% if user['activity']=="athlete" %}selected{% endif %}>นักกีฬา 2x/วัน</option>
+                    </select>
+                </div>
+
+                <div class="btn-group" style="margin-top: 25px;">
+                    <a href="/admin" class="btreset" style="text-decoration: none; flex: 1; display: flex; align-items: center; justify-content: center;">ยกเลิก</a>
+                    <button class="btsubmit" type="submit" style="flex: 2;">บันทึกการเปลี่ยนแปลง</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

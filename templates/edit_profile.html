@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Edit Profile</title>
+</head>
+
+<body>
+    <div style="margin-top: 30px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+        <a href="/profile" style="text-decoration: none; color: #FF6BA9; font-size: 14px;">← กลับไปหน้าโปรไฟล์</a>
+    </div>
+    <div class="container">
+        <nav>
+            <a href="/dashboard">แดชบอร์ด</a>
+            <a href="/food_log">บันทึกสารอาหาร</a>
+            <a href="/workout">ตารางออกกำลังกาย</a>
+            <a href="/profile">โปรไฟล์</a>
+        </nav>
+
+        <div class="card">
+            <h1 class="page-title" style="margin-top: 0;">แก้ไขข้อมูลส่วนตัว</h1>
+            <form method="post" class="form-container">
+                <div class="form-group">
+                    <label>เพศ</label>
+                    <select class="tb" name="gender">
+                        <option value="male" {% if user.gender=="male" %}selected{% endif %}>ชาย</option>
+                        <option value="female" {% if user.gender=="female" %}selected{% endif %}>หญิง</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>อายุ</label>
+                    <input class="tb" type="number" name="age" value="{{ user.age or '' }}" placeholder="อายุ">
+                </div>
+                <div class="form-group">
+                    <label>น้ำหนัก (kg)</label>
+                    <input class="tb" type="number" step="0.1" name="weight" value="{{ user.weight or '' }}"
+                        placeholder="น้ำหนัก">
+                </div>
+                <div class="form-group">
+                    <label>ส่วนสูง (cm)</label>
+                    <input class="tb" type="number" step="0.1" name="height" value="{{ user.height or '' }}"
+                        placeholder="ส่วนสูง">
+                </div>
+                <div class="form-group">
+                    <label>ระดับกิจกรรม</label>
+                    <select class="tb" name="activity">
+                        <option value="sedentary" {% if user.activity=="sedentary" %}selected{% endif %}>
+                            ไม่ออกกำลังกายเลย</option>
+                        <option value="light" {% if user.activity=="light" %}selected{% endif %}>เบา 1-2 วัน/สัปดาห์
+                        </option>
+                        <option value="moderate" {% if user.activity=="moderate" %}selected{% endif %}>ปานกลาง 3-5
+                            วัน/สัปดาห์</option>
+                        <option value="heavy" {% if user.activity=="heavy" %}selected{% endif %}>หนัก 6-7 วัน/สัปดาห์
+                        </option>
+                        <option value="athlete" {% if user.activity=="athlete" %}selected{% endif %}>นักกีฬา 2x/วัน
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>เปอร์เซ็นต์ไขมัน (% Body Fat)</label>
+                    <input class="tb" type="number" step="0.1" name="bodyfat" value="{{ user.bodyfat or '' }}"
+                        placeholder="เช่น 20">
+                </div>
+
+                <div class="form-actions">
+                    <button class="btsubmit" type="submit">บันทึกการเปลี่ยนแปลง</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

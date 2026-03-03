@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Workout</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Workout</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <a href="/dashboard">แดชบอร์ด</a>
+            <a href="/food_log">บันทึกสารอาหาร</a>
+            <a href="/workout">ตารางออกกำลังกาย</a>
+            <a href="/profile">โปรไฟล์</a>
+        </nav>
+
+        <div class="card" style="padding: 50px 30px;">
+            <div style="font-size: 60px; margin-bottom: 20px;"></div>
+            
+            <h2 class="form-title">ระบบกำลังพัฒนา</h2>
+            
+            <p style="color: #666; line-height: 1.8;">
+                ขออภัยในความไม่สะดวกครับ <br>
+                ฟีเจอร์ <b>"บันทึกการออกกำลังกาย"</b> กำลังอยู่ในช่วงปรับปรุง <br>
+                เพื่อให้คุณได้รับประสบการณ์ที่ดีที่สุดในการใช้งาน
+            </p>
+
+            <div style="margin-top: 30px; padding: 15px; background: #FFF9FB; border-radius: 20px; border: 1px dashed #FF6BA9;">
+                <p style="color: #FF6BA9; font-size: 14px;">
+                    เตรียมพบกับระบบบันทึกท่าออกกำลังกาย <br> เร็วๆ นี้
+                </p>
+            </div>
+
+            <div class="btn-group">
+                <a href="/dashboard" class="btsubmit" style="text-decoration: none; display: inline-block;">กลับไปหน้าหลัก</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+    <!-- <div class="container">
+        <nav>
+            <a href="/dashboard">แดชบอร์ด</a>
+            <a href="/food_log">บันทึกสารอาหาร</a>
+            <a href="/workout">ตารางออกกำลังกาย</a>
+            <a href="/profile">โปรไฟล์</a>
+        </nav>
+
+        <div class="card">
+            <h2 class="form-title">บันทึกการออกกำลังกาย</h2>
+            <form method="POST" action="/workout">
+                <div class="form-group">
+                    <label>ท่าออกกำลังกาย / กิจกรรม</label>
+                    <input class="tb" type="text" name="exercise_name" placeholder="เช่น Bench Press, วิ่ง" required>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="form-group">
+                        <label>จำนวนเซต</label>
+                        <input class="tb" type="number" name="sets" placeholder="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>จำนวนครั้ง (Reps)</label>
+                        <input class="tb" type="number" name="reps" placeholder="0" min="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>น้ำหนักที่ใช้ (kg) / ระยะเวลา (นาที)</label>
+                    <input class="tb" type="number" name="weight_time" placeholder="0" step="0.1">
+                </div>
+
+                <div class="btn-group">
+                    <button class="btreset" type="reset">ล้าง</button>
+                    <button class="btsubmit" type="submit">บันทึกกิจกรรม</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card" style="max-width: 550px;">
+            <h3 style="color: #FF6BA9; text-align: left; margin-bottom: 15px;">รายการวันนี้</h3>
+            
+            {% if workouts %}
+            <div style="overflow-x: auto;">
+                <table class="food-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left;">ท่าออกกำลังกาย</th>
+                            <th>เซต</th>
+                            <th>ครั้ง</th>
+                            <th>น้ำหนัก/เวลา</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for w in workouts %}
+                        <tr>
+                            <td style="text-align: left; font-weight: bold;">{{ w.exercise_name }}</td>
+                            <td><span class="workout-stat">{{ w.sets }}</span></td>
+                            <td><span class="workout-stat">{{ w.reps }}</span></td>
+                            <td>{{ w.weight_time }}</td>
+                            <td>
+                                <a href="/workout/delete/{{ w.id }}" style="text-decoration: none; color: #ff4d4d; font-size: 14px;" onclick="return confirm('ลบรายการนี้?')">🗑️</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p style="color: #888; padding: 20px;">ยังไม่มีการบันทึกการออกกำลังกายในวันนี้</p>
+            {% endif %} -->
+        </div>
+    </div>
+</body>
+
+</html>

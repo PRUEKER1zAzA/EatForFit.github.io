@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>EatForFit | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center;">
+            <img style="width: 60px; height: 60px;" src="{{ url_for('static', filename='/img/logo.png') }}" alt="Logo">
+            <span style="font-weight: bold; margin-left: 10px; color: #FF6BA9; font-size: 20px;">EatForFit</span>
+        </div>
+        <ul style="display: flex; list-style: none; gap: 15px;">
+            <li><a href="/home">หน้าแรก</a></li>
+            <li><a href="/calculator">คำนวณ TDEE</a></li>
+        </ul>
+        <ul style="display: flex; list-style: none; gap: 15px;">
+            <li><a href="/">สมัครสมาชิก</a></li>
+            <li><a href="/login">เข้าสู่ระบบ</a></li>
+        </ul>
+    </nav>
+
+    <header style="margin-top: 50px; margin-bottom: 30px;">
+        <h1 style="font-size: 3rem; color: #FF6BA9;">EatForFit</h1>
+        <p style="color: #666;">คำนวณพลังงานที่ร่างกายคุณต้องการต่อวัน (TDEE)</p>
+    </header>
+
+    <div class="container">
+        <div class="data-card" style="margin: 0 auto; max-width: 800px; text-align: left;">
+            <section>
+                <h2><span style="color: #FF6BA9;">●</span> TDEE คืออะไร?</h2>
+                <p>TDEE (Total Daily Energy Expenditure) คือพลังงานทั้งหมดที่ร่างกายใช้ใน 1 วัน รวมทั้งการหายใจ เดิน ออกกำลังกาย และกิจกรรมประจำวัน</p>
+            </section>
+
+            <section style="margin-top: 30px;">
+                <h2><span style="color: #FF6BA9;">●</span> BMR คืออะไร?</h2>
+                <p>BMR (Basal Metabolic Rate) คือพลังงานขั้นต่ำที่ร่างกายต้องใช้ใน 1 วัน แม้คุณจะนอนเฉย ๆ ไม่ทำอะไรเลย</p>
+            </section>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+                <div style="background: #FFF5F8; padding: 25px; border-radius: 20px;">
+                    <h3 style="color: #FF6BA9; margin-bottom: 10px;">ทำไมต้องรู้?</h3>
+                    <ul style="list-style: none; line-height: 1.8;">
+                        <li>ลดไขมันได้แม่นยำ</li>
+                        <li>เพิ่มกล้ามเนื้ออย่างมีระบบ</li>
+                        <li>ควบคุมน้ำหนักระยะยาว</li>
+                    </ul>
+                </div>
+                <div style="background: #FFF5F8; padding: 25px; border-radius: 20px;">
+                    <h3 style="color: #FF6BA9; margin-bottom: 10px;">BMR ใช้กับอะไร?</h3>
+                    <ul style="list-style: none; line-height: 1.8;">
+                        <li>การเต้นของหัวใจและการหายใจ</li>
+                        <li>การทำงานของสมอง</li>
+                        <li>การควบคุมอุณหภูมิร่างกาย</li>
+                    </ul>
+                </div>
+            </div>
+
+            <section style="margin-top: 30px; padding: 20px; border-top: 2px dashed #FFD6E0;">
+                <h2 style="text-align: center; margin-bottom: 15px;">สูตร Mifflin-St Jeor</h2>
+                <p style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #FFD6E0;">
+                    <strong>ผู้ชาย:</strong> BMR = (10 × น้ำหนัก kg) + (6.25 × ส่วนสูง cm) − (5 × อายุ ปี) + 5<br>
+                    <strong>ผู้หญิง:</strong> BMR = (10 × น้ำหนัก kg) + (6.25 × ส่วนสูง cm) − (5 × อายุ ปี) − 161
+                </p>
+            </section>
+        </div>
+    </div>
+    <footer style="margin-top: 50px; color: #bbb;">&copy; 2025 EatForFit No Team</footer>
+</body>
+</html>
