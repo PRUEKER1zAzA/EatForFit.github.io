@@ -34,8 +34,8 @@ ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
 oauth = OAuth(app)
 google = oauth.register(
     name='google',
-    client_id='501075894042-he7a37mt0osbt116ef2sjds0k3pcpf4k.apps.googleusercontent.com',
-    client_secret='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',
+    client_id=os.getenv("GOOGLE_CLIENT_ID"),
+    client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
     client_kwargs={'scope': 'openid email profile'},
 )
