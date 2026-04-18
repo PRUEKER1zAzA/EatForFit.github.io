@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Guest Login</title>
+</head>
+<body>
+    <div class="card">
+        <form action="/guest_logsubmit" method="POST">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <h1 class="form-title">เข้าสู่ระบบ</h1>
+                <p style="color: #666;">ยินดีต้อนรับกลับมา</p>
+            </div>
+
+            <div class="form-group">
+                <label>ชื่อเล่น / ชื่อผู้ใช้</label>
+                <input class="tb" type="text" name="username" placeholder="ป้อนชื่อเล่นของคุณ" required>
+            </div>
+
+            <div class="form-group">
+                <label>รหัสผ่าน</label>
+                <input class="tb" type="password" name="password" placeholder="ป้อนรหัสผ่าน" required>
+            </div>
+
+            <div class="btn-group" style="margin-top: 30px;">
+                <button class="btreset" type="reset">ล้าง</button>
+                <button class="btsubmit" type="submit">เข้าสู่ระบบ</button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <small>ยังไม่มีบัญชี? <a href="/guest_register" style="color: #FF6BA9; text-decoration: none;">สมัครสมาชิกที่นี่</a></small>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

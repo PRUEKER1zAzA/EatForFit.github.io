@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/dashboard">แดชบอร์ด</a>
+            <a href="/food_log">บันทึกสารอาหาร</a>
+            <a href="/workout">ตารางออกกำลังกาย</a>
+            <a href="/profile">โปรไฟล์</a>
+        </nav>
+
+        <div class="card" style="text-align: center;">
+            <h1>ยินดีต้อนรับ</h1>
+            {% if user %}
+                {% set messages = ["วันนี้คุณออกกำลังกายแล้วหรือยัง", "วันนี้คุณเล่นส่วนไหน", "อย่าลืมดื่มน้ำให้เพียงพอ", "ทำเป้าหมายวันนี้ให้สำเร็จ"] %}
+                <p>สวัสดีคุณ <b>{{ user.name }}</b>, {{ messages | random }}</p>
+            {% endif %}
+
+            <div style="margin-top: 20px;">
+                <h3>วันนี้คุณกินไปแล้ว {{ eaten }} kcal</h3>
+            </div>
+
+            {% if tdee > 0 %}
+            <div style="margin-top: 30px;">
+                <h3>ยอดแคลคงเหลือ</h3>
+                <div class="circle">
+                    <h2 style="font-size: 40px; margin:0;">{{ remaining }}</h2>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <h3>รายการอาหารแนะนำ</h3>
+            <table class="food-table">
+                <thead>
+                    <tr>
+                        <th>อาหาร</th>
+                        <th>แคล</th>
+                        <th>คาร์บ</th>
+                        <th>โปรตีน</th>
+                        <th>ไขมัน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for food in base_foods %}
+                    <tr>
+                        <td>{{ food.food_name }}</td>
+                        <td>{{ food.base_cal }}</td>
+                        <td>{{ food.base_carb }}</td>
+                        <td>{{ food.base_protein }}</td>
+                        <td>{{ food.base_fat }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

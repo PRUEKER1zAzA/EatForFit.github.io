@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | TDEE Calculator</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center;">
+            <img style="width: 60px; height: 60px;" src="{{ url_for('static', filename='/img/logo.png') }}">
+            <span style="font-weight: bold; margin-left: 10px; color: #FF6BA9; font-size: 20px;">EatForFit</span>
+        </div>
+        <ul style="display: flex; list-style: none; gap: 15px;">
+            <li><a href="/home">หน้าแรก</a></li>
+            <li><a href="/calculator">คำนวณ TDEE</a></li>
+        </ul>
+        <ul style="display: flex; list-style: none; gap: 15px;">
+            <li><a href="/">สมัครสมาชิก</a></li>
+            <li><a href="/login">เข้าสู่ระบบ</a></li>
+        </ul>
+    </nav>
+
+    <div class="card">
+        <form action="/calculate" method="POST">
+            <h1 class="form-title" style="text-align: center;">ป้อนข้อมูลของคุณ</h1>
+            
+            <div class="form-group">
+                <label>เพศ</label>
+                <select class="tb" name="gender" required>
+                    <option value="male">ชาย</option>
+                    <option value="female">หญิง</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>อายุ (ปี)</label>
+                <input class="tb" type="number" name="age" placeholder="เช่น 25" required>
+            </div>
+
+            <div class="form-group">
+                <label>น้ำหนัก (กก.)</label>
+                <input class="tb" type="number" name="weight" placeholder="เช่น 65" step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label>ส่วนสูง (ซม.)</label>
+                <input class="tb" type="number" name="height" placeholder="เช่น 175" step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label>ระดับกิจกรรม</label>
+                <select class="tb" name="activity" required>
+                    <option value="sedentary">ไม่ออกกำลังกายเลย</option>
+                    <option value="light">เบา 1-2 วัน/สัปดาห์</option>
+                    <option value="moderate">ปานกลาง 3-5 วัน/สัปดาห์</option>
+                    <option value="heavy">หนัก 6-7 วัน/สัปดาห์</option>
+                    <option value="athlete">นักกีฬา ออกกำลังกายหนัก 2x/วัน</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>เปอร์เซ็นไขมัน (%) - ถ้าไม่ทราบให้ใส่ค่าประมาณ</label>
+                <input class="tb" type="number" name="bodyfat" placeholder="เช่น 15" required>
+            </div>
+
+            <div class="btn-group">
+                <button class="btreset" type="reset">ล้าง</button>
+                <button class="btsubmit" type="submit">คำนวณ</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

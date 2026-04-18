@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Login</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-brand" style="display: flex; align-items: center;">
+            <img style="width: 60px; height: 60px;" src="{{ url_for('static', filename='/img/logo.png') }}">
+            <span style="font-weight: bold; margin-left: 10px; color: #FF6BA9; font-size: 20px;">EatForFit</span>
+        </div>
+        <ul style="display: flex; list-style: none; gap: 15px;">
+            <li><a href="/home">หน้าแรก</a></li>
+            <li><a href="/calculator">คำนวณ TDEE</a></li>
+        </ul>
+        <ul style="display: flex; list-style: none; gap: 15px;">
+            <li><a href="/">สมัครสมาชิก</a></li>
+            <li><a href="/login">เข้าสู่ระบบ</a></li>
+        </ul>
+    </nav>
+
+    <div class="card" style="text-align: center;">
+        <img style="width: 100px; height: auto; margin-bottom: 15px;" src="{{ url_for('static', filename='img/logo.png') }}">
+        <h1 class="form-title">ยินดีต้อนรับกลับมา</h1>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <a href="/google_login" class="btn-google">
+                <img style="width: 24px; margin-right: 10px;" src="{{ url_for('static', filename='img/google_logo.png') }}">
+                เข้าสู่ระบบด้วย Google
+            </a>
+            <a href="/guest_login" class="btsubmit" style="text-decoration: none; text-align: center; display: block;">
+                เข้าสู่ระบบด้วยบัญชี EatForFit
+            </a>
+        </div>
+
+        <p style="margin-top: 25px; font-size: 14px;">
+            คุณยังไม่มีบัญชีใช่หรือไม่? <a href="/" style="color: #FF6BA9; font-weight: bold; text-decoration: none;">สมัครสมาชิกฟรี</a>
+        </p>
+    </div>
+</body>
+</html>

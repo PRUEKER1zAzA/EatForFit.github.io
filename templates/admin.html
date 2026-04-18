@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Admin Area</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-title">จัดการหลังบ้าน Admin</h1>
+
+    <div class="card admin-wide-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h3 style="color: #555;">ข้อมูลอาหารพื้นฐาน</h3>
+            <a href="/add_base_food" class="btsubmit" style="text-decoration: none; font-size: 14px;">+ เพิ่มเมนูใหม่</a>
+        </div>
+        
+        <table class="table-modern">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ชื่ออาหาร</th>
+                    <th>หมวดหมู่</th>
+                    <th>แคล</th>
+                    <th>คาร์บ</th>
+                    <th>โปรตีน</th>
+                    <th>ไขมัน</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in foods %}
+                <tr>
+                    <td><span style="color: #999;">#{{ f["id"] }}</span></td>
+                    <td style="font-weight: bold;">{{ f["food_name"] }}</td>
+                    <td><span class="workout-stat" style="font-size: 12px;">{{ f["category"] }}</span></td>
+                    <td style="color: #FF6BA9; font-weight: bold;">{{ f["base_cal"] }}</td>
+                    <td>{{ f["base_carb"] }}g</td>
+                    <td>{{ f["base_protein"] }}g</td>
+                    <td>{{ f["base_fat"] }}g</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card admin-wide-card">
+        <h3 style="color: #555; text-align: left; margin-bottom: 15px;">จัดการผู้ใช้ (Guest)</h3>
+        <table class="table-modern">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ชื่อ</th>
+                    <th>เพศ</th>
+                    <th>อายุ</th>
+                    <th>นน./สส.</th>
+                    <th>กิจกรรม</th>
+                    <th>ไขมัน (%)</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in guest_users %}
+                <tr>
+                    <td><span style="color: #999;">#{{ u["id"] }}</span></td>
+                    <td style="font-weight: bold;">{{ u["username"] }}</td>
+                    <td>{{ u["gender"] }}</td>
+                    <td>{{ u["age"] }}</td>
+                    <td>{{ u["weight"] }} / {{ u["height"] }}</td>
+                    <td style="font-size: 12px;">{{ u["activity"] }}</td>
+                    <td>{{ u["bodyfat"] }}%</td>
+                    <td>
+                        <a href="/edit_users/guest/{{ u['id'] }}" class="btn-edit-small">แก้ไข</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="card admin-wide-card">
+        <h3 style="color: #555; text-align: left; margin-bottom: 15px;">จัดการผู้ใช้ (Google)</h3>
+        <table class="table-modern">
+            <thead>
+                <tr>
+                    <th>รูป</th>
+                    <th>ชื่อ - อีเมล</th>
+                    <th>เพศ</th>
+                    <th>นน./สส.</th>
+                    <th>กิจกรรม</th>
+                    <th>ไขมัน (%)</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in google_users %}
+                <tr>
+                    <td>
+                        <img src="{{ u['picture'] }}" style="width: 35px; height: 35px; border-radius: 50%; border: 2px solid #FCE4EC;">
+                    </td>
+                    <td>
+                        <div style="font-weight: bold;">{{ u["name"] }}</div>
+                        <div style="font-size: 11px; color: #888;">{{ u["email"] }}</div>
+                    </td>
+                    <td>{{ u["gender"] or '-' }}</td>
+                    <td>{{ u["weight"] or '0' }} / {{ u["height"] or '0' }}</td>
+                    <td style="font-size: 11px;">{{ u["activity"] or 'ไม่ได้ระบุ' }}</td>
+                    <td>{{ u["bodyfat"] or '0' }}%</td>
+                    <td>
+                        <a href="/edit_users/google/{{ u['id'] }}" class="btn-edit-small">แก้ไข</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

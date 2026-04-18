@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Admin-Base food</title>
+</head>
+
+<body>
+    <div style="margin-top: 30px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+        <a href="/admin" style="text-decoration: none; color: #FF6BA9; font-size: 14px;">← กลับไปหน้าจัดการ</a>
+    </div>
+    <div class="card">
+        <h2>เพิ่มอาหาร</h2>
+
+        <form method="post">
+
+            <div class="form-group">
+                <label>ชื่ออาหาร</label>
+                <input class="tb" type="text" name="food_name" required>
+            </div>
+
+            <div class="form-group">
+                <label>หมวดหมู่</label>
+                <select class="tb" name="category">
+                    <option value="carb">คาร์บ</option>
+                    <option value="protein">โปรตีน</option>
+                    <option value="fat">ไขมัน</option>
+                    <option value="fruit">ผลไม้</option>
+                    <option value="snack">ของว่าง</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>แคลอรี่ (ต่อ 100g)</label>
+                <input class="tb" type="number" step="0.1" name="base_cal">
+            </div>
+
+            <div class="form-group">
+                <label>คาร์โบไฮเดรต (g)</label>
+                <input class="tb" type="number" step="0.1" name="base_carb">
+            </div>
+
+            <div class="form-group">
+                <label>โปรตีน (g)</label>
+                <input class="tb" type="number" step="0.1" name="base_protein">
+            </div>
+
+            <div class="form-group">
+                <label>ไขมัน (g)</label>
+                <input class="tb" type="number" step="0.1" name="base_fat">
+            </div>
+
+            <button class="btsubmit" type="submit" class="btn-submit">บันทึกอาหาร</button>
+
+        </form>
+    </div>
+
+
+</body>
+
+</html>

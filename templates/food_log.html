@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <script src="{{ url_for('static', filename='JS/eatforfit.js') }}"></script>
+    <title>EatForFit | Food Log</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <a href="/dashboard">แดชบอร์ด</a>
+            <a href="/food_log">บันทึกสารอาหาร</a>
+            <a href="/workout">ตารางออกกำลังกาย</a>
+            <a href="/profile">โปรไฟล์</a>
+        </nav>
+
+        <div class="card">
+            <h2 class="form-title">บันทึกสารอาหาร</h2>
+            <form method="POST" action="/food_log" onsubmit="return cf()">
+                <div class="form-group">
+                    <input class="tb" type="text" name="food" placeholder="ชื่ออาหาร" required>
+                </div>
+                <div class="form-group">
+                    <input class="tb" type="number" name="carb" id="carb" placeholder="คาร์บ (g)"
+                        oninput="calculateCal()" step="0.5" required>
+                </div>
+                <div class="form-group">
+                    <input class="tb" type="number" name="protein" id="protein" placeholder="โปรตีน (g)"
+                        oninput="calculateCal()" step="0.5" required>
+                </div>
+                <div class="form-group">
+                    <input class="tb" type="number" name="fat" id="fat" placeholder="ไขมัน (g)" 
+                    oninput="calculateCal()" step="0.5" required>
+                </div>
+                <div class="form-group">
+                    <label>แคลอรี่รวมโดยประมาณ</label>
+                    <input class="tb" type="number" name="cal" id="cal" 
+                    readonly style="background:#f9f9f9; color: #FF6BA9; font-weight: bold;">
+                </div>
+
+                <div class="btn-group">
+                    <button class="btreset" type="reset">ล้าง</button>
+                    <button class="btsubmit" type="submit">เพิ่มอาหาร</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card" style="max-width: 600px;">
+            <h3 style="color: #FF6BA9;">ยอดรวมวันนี้</h3>
+            <p style="font-size: 14px; margin: 10px 0;">
+                แคลลอรี่ {{ total["total_cal"] or 0 }} kcal | คาร์บ {{ total["total_carb"] or 0 }}g | โปรตีน {{
+                total["total_protein"] or 0 }}g | ไขมัน {{ total["total_fat"] or 0 }}g
+            </p>
+            <hr style="border: none; border-top: 1px solid #FCE4EC;">
+
+            <div class="food-grid">
+                {% for f in foods %}
+                <div class="in-result-card">
+                    <a href="/edit_food/{{ f.id }}" class="edit-dot" style="font-size: 16px;">⋮</a>
+                    <p><b>{{ f["food_name"] }}</b></p>
+                    <p style="color: #FF6BA9; font-size: 14px;">{{ f["calories"] }} kcal</p>
+                    <a class="delete-mini" href="/food_log/delete/{{ f['id'] }}" onclick="cf()">ลบรายการ</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

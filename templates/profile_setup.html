@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/eatforfit.css') }}">
+    <title>EatForFit | Setup Profile</title>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px;">
+        <h2 style="color: #FF6BA9;">อีกนิดเดียวแล้ว กรุณากรอกข้อมูลเพื่อคำนวณ</h2>
+    </div>
+    
+    <div class="card">
+        <form action="/profilesub" method="POST">
+            <h1 class="form-title" style="text-align: center;">ข้อมูลร่างกาย</h1>
+            
+            <div class="form-group">
+                <label>เพศ (Gender)</label>
+                <select class="tb" name="gender" required>
+                    <option value="male">ชาย</option>
+                    <option value="female">หญิง</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>อายุ (Age)</label>
+                <input class="tb" type="number" name="age" placeholder="ปี" required>
+            </div>
+
+            <div class="form-group">
+                <label>น้ำหนัก (Weight - kg)</label>
+                <input class="tb" type="number" name="weight" placeholder="กก." step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label>ส่วนสูง (Height - cm)</label>
+                <input class="tb" type="number" name="height" placeholder="ซม." step="0.1" required>
+            </div>
+
+            <div class="form-group">
+                <label>กิจกรรม (Activity)</label>
+                <select class="tb" name="activity" required>
+                    <option value="sedentary">ไม่ออกกำลังกายเลย</option>
+                    <option value="light">เบา 1-2 วัน/สัปดาห์</option>
+                    <option value="moderate">ปานกลาง 3-5 วัน/สัปดาห์</option>
+                    <option value="heavy">หนัก 6-7 วัน/สัปดาห์</option>
+                    <option value="athlete">นักกีฬา 2x/วัน</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>ไขมัน (Body Fat %) - ถ้าไม่ทราบให้ใส่ค่าประมาณ</label>
+                <input class="tb" type="number" name="bodyfat" placeholder="เช่น 15" required>
+            </div>
+
+            <div class="btn-group" style="margin-top: 25px;">
+                <button class="btreset" type="reset">ล้าง</button>
+                <button class="btsubmit" type="submit">บันทึกข้อมูล</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
