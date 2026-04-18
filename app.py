@@ -1048,8 +1048,8 @@ def calculate():
         hfcut_carb=hfcut_carb, hfcut_protein=hfcut_protein, hfcut_fat=hfcut_fat
     )
         
-        
-if __name__ == '__main__':
+if __name__ == "__main__":
     init_db()
-    app.run(debug=True,host="0.0.0.0", use_reloader=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port, use_reloader=True)
     
